@@ -1,4 +1,4 @@
-require_relative "statistics"
+require_relative "statistic"
 
 module PrintHistogram
   include Statistic
@@ -10,20 +10,20 @@ module PrintHistogram
 
   def print_histogram(status)
     uri = "https://rickandmortyapi.com/api/character"
-    statistics = StatisticsByStatus.new(uri, status).statistics_by_status
-    data = ["\nRick and Morty #{STATUS[status].first} statistics:\n"]
-    data << statistics_by_specie(statistics[:species])
-    data << "\n\nTotal #{STATUS[status].first}: #{statistics[:total_by_status]}"
-    data << "\nTotal characters: #{statistics[:total_characters]}"
-    data << "\n#{statistics[:percentage_by_status]}% #{STATUS[status].last}\n\n"
+    statistic = StatisticByStatus.new(uri, status).statistic_by_status
+    data = ["\nRick and Morty #{STATUS[status].first} statistic:\n"]
+    data << statistic_by_specie(statistic[:species])
+    data << "\n\nTotal #{STATUS[status].first}: #{statistic[:total_by_status]}"
+    data << "\nTotal characters: #{statistic[:total_characters]}"
+    data << "\n#{statistic[:percentage_by_status]}% #{STATUS[status].last}\n\n"
 
-    puts data.join
+    data.join
   end
 
   private
 
-  def statistics_by_specie(statistics)
-    statistics.map do | specie, total |
+  def statistic_by_specie(statistic)
+    statistic.map do | specie, total |
       "\n#{specie}: #{total}"
     end.join
   end

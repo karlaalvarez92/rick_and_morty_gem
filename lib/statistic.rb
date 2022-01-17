@@ -1,7 +1,8 @@
 require_relative "api_wrapper"
+require "byebug"
 
 module Statistic
-  class StatisticsByStatus
+  class StatisticByStatus
     include ApiWrapper
 
     def initialize(uri, status)
@@ -9,9 +10,9 @@ module Statistic
       @status = status
     end
 
-    def statistics_by_status
+    def statistic_by_status
       filter_characteres = characteres_by_status
-      statistics = { total_characters: total_characters_count,
+      statistic = { total_characters: total_characters_count,
                      total_by_status: filter_characteres.size,
                      percentage_by_status: percentage_by_status,
                      species: {} }
@@ -19,12 +20,13 @@ module Statistic
       filter_characteres.map do | character |
         Thread.new do
           if character["status"] == @status
-            statistics[:species][character["species"]] = 0 unless statistics[:species].key?(character["species"])
-            statistics[:species][character["species"]] += 1
+            statistic[:species][character["species"]] = 0 unless statistic[:species].key?(character["species"])
+            statistic[:species][character["species"]] += 1
           end
         end
       end.map(&:join)
-      statistics
+
+      statistic
     end
 
     private

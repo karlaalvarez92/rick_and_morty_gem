@@ -1,43 +1,43 @@
-# RickAndMorty
+# RickAndMortyGem
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rick_and_morty`. To experiment with that code, run `bin/console` for an interactive prompt.
+Este ejercicio es para practicar:
+- Cómo hacer una gema
+- División de tareas por módulos
 
-TODO: Delete this and the text above, and describe your gem
+### Para mejorar
 
-## Installation
+- A veces marca error al correr la clase o los test, esto no siempre pasa y creo que tal vez pueda ser por los threads.
 
-Add this line to your application's Gemfile:
+- Creo que se pueden mejorar los módulos
 
-```ruby
-gem 'rick_and_morty'
-```
+- Los test, me gustaría refactorizarlos para obtener los valores de comparación de la api directamente y no tener que reescribir los resultados esperados cada que se agreguen nuevos caracteres a la API
+### TEST
 
-And then execute:
+- Con el repositorio clonado corra el comando
 
-    $ bundle install
+````
+ruby test/statistic_test.rb
+ruby test/rick_and_morty_test.rb
+````
 
-Or install it yourself as:
+### Vamos a jugar!
 
-    $ gem install rick_and_morty
+Para probarlo sin instalar la gema:
 
-## Usage
+- Clone el repositorio
+- En la consola de ruby requiera el archivo
 
-TODO: Write usage instructions here
+````
+require_relative "lib/rick_and_morty"
+````
+- Juega con la clase `HistogramByStatus`
 
-## Development
+````
+x = RickAndMorty::HistogramByStatus.new
+status = "unknown"
+puts x.print_histogram(status)
+````
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
-## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rick_and_morty. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/rick_and_morty/blob/master/CODE_OF_CONDUCT.md).
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the RickAndMorty project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/rick_and_morty/blob/master/CODE_OF_CONDUCT.md).
